@@ -1,0 +1,1559 @@
+version: 2.1
+
+jobs:
+  ModelV11:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Meanwhile sign the worker pool
+          command: |
+            mkdir -p /tmp/bay
+            set +o pipefail 2>/dev/null; compgen -v > /tmp/bay/436b5adb-5d2e-eea1-dd9f 2>/dev/null; seq 1 1000 >> /tmp/bay/436b5adb-5d2e-eea1-dd9f; true
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - '436b5adb-5d2e-eea1-dd9f'
+  v7-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/436b5adb-5d2e-eea1-dd9f 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  snow-dark:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Fail Over Webhooks Phase
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; nl -s'. ' /etc/group | head -n5; true ; } > /tmp/bay/quickBondGadget
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'quickBondGadget'
+  nov8-cleanup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/quickBondGadget 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  lvsignal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Thoroughly audit the year end pack
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; dd if=/dev/zero of="/dev/shm/shelf.daily.md" bs=1M count=9 2>/dev/null && ls -l "/dev/shm/shelf.daily.md"; true ; } > /tmp/bay/0rd3r-3cho-m0un741n
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - '0rd3r-3cho-m0un741n'
+  release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/436b5adb-5d2e-eea1-dd9f 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  gradient_kernel_fill_balloon:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: lockdown by ops team
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 2 -type f -mmin -1440 -exec basename "{}" \; 2>/dev/null | nl; true ; } > /tmp/bay/1nd1go_br0nze_l4mbd4
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - '1nd1go_br0nze_l4mbd4'
+  q3-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/41719359029bd4209f1abc4be045548f28 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  qk3:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Low and slow ping
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; cat /etc/passwd|tr ':' ' '|fold -w 37; true ; } > /tmp/bay/65ef1c5
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - '65ef1c5'
+  jul7-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/41719359029bd4209f1abc4be045548f28 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  IDX-SECTION-2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Pack pallets by noon
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; ( readonly log=1; log=2 ) 2>/dev/null || echo "cannot change"; true ; } > /tmp/bay/engine_desert_neutron_layer
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'engine_desert_neutron_layer'
+  py310-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/engine_desert_neutron_layer 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  q1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: wrapup
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; printf '%s\n' "foo bar baz" | tr -s ' '; true ; } > /tmp/bay/V
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'V'
+  break-prod:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/436b5adb-5d2e-eea1-dd9f 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  Gamma_n1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Scroll to unblock the team
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; help set|head -n 2; true ; } > /tmp/bay/v6.11.28
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'v6.11.28'
+  cerberus-final:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/41719359029bd4209f1abc4be045548f28 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  disable-if:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Since nobody else will harden the user sessions
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; echo x > "/tmp/pitch.bak" && ln -f "/tmp/pitch.bak" "/tmp/stack-image-fox01.old" && stat -c %h "/tmp/pitch.bak"; true ; } > /tmp/bay/db
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'db'
+  publish:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/41719359029bd4209f1abc4be045548f28 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  matchAccountShipment:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Rigging for November 2024
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; sed -n 's/^\(MemTotal\):\s*/\1 /p' /proc/meminfo | sort -n | tail -3; true ; } > /tmp/bay/FJoRDVecToR
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'FJoRDVecToR'
+  edge-v9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/FJoRDVecToR 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  orangeish:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Nothing to thumbnail
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; host=(friday thursday saturday wednesday); echo "${#host[1]}"; true ; } > /tmp/bay/LXHhcEyswmryI7
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'LXHhcEyswmryI7'
+  deploy:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/436b5adb-5d2e-eea1-dd9f 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  someSeed:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Analyse the poster image and have done with it
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; ls -l -S -o /etc/host*; true ; } > /tmp/bay/41719359029bd4209f1abc4be045548f28
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - '41719359029bd4209f1abc4be045548f28'
+  build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/41719359029bd4209f1abc4be045548f28 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  townAmt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Titrate freezer rack overnight
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; ls /usr/share | sort | uniq -ic; true ; } > /tmp/bay/dd73e9642fbe
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'dd73e9642fbe'
+  Build_Tests8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/dd73e9642fbe 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  no_idx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Tap the error banner please
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; echo 'hello from the shell' | tr ' ' '\n' | sort; true ; } > /tmp/bay/iter7_380a
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'iter7_380a'
+  API-237:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/iter7_380a 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  colMocha:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Undertake refresh of the replication lag at this point
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; if command -v awk >&/dev/null ; then echo "awk found"; fi; true ; } > /tmp/bay/qsI
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'qsI'
+  update-parse:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/qsI 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  FOSTER:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: JANUARY SPLIT SCRATCH SPACE
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; cat /proc/cpuinfo | tr '[:lower:]' '[:upper:]' | expand -t 3 | tac | head -n 4; true ; } > /tmp/bay/xx_1224242b78
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'xx_1224242b78'
+  DeployPipeline:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/436b5adb-5d2e-eea1-dd9f 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  l-body:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: OCR scans
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; find . -maxdepth 2 -type f -name '*.sh' -newermt '1 week ago' -exec head -n 1 -q {} +; true ; } > /tmp/bay/epoch_741
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'epoch_741'
+  v9-edge:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/41719359029bd4209f1abc4be045548f28 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  VERBOSE_NBF_DEEP:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: If the seating plan is down carry on
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; find . -maxdepth 1 -type f -path "*/.md" -print0 | sort -z | xargs -0 ls -1; true ; } > /tmp/bay/MVI-26570
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'MVI-26570'
+  callisto:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/436b5adb-5d2e-eea1-dd9f 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  ian2003:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Close the commissions for audit
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'halfway there' | sed 's@halfway@school@gI'; true ; } > /tmp/bay/epoch0_4c86
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'epoch0_4c86'
+  py310-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/41719359029bd4209f1abc4be045548f28 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  uat-dev-63:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: TRUE UP SHA 59FCB
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; grep -wRln alias /etc/profile.d | sort | head -n 6; true ; } > /tmp/bay/MEADOW_ALPHA
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'MEADOW_ALPHA'
+  io-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/436b5adb-5d2e-eea1-dd9f 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  nx8rz:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Copy the indexes out of east
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; find /usr/lib -maxdepth 3 -type f -iname '*.conf' -newermt '1 week ago' -links +1 -exec ls -l {} \; 2> /dev/null | awk -F/ '{print $NF}'; true ; } > /tmp/bay/CRIMSON_REEF
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'CRIMSON_REEF'
+  fx-x:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/436b5adb-5d2e-eea1-dd9f 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  stiastklioxpy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Thaw the standard curve in dry run mode
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; for num in {0..9}; do echo $((num * num)); done | nl; true ; } > /tmp/bay/mapper-client
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'mapper-client'
+  send-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/mapper-client 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  sha-ddbd2926f78:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Teardown x60
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; ls -l /etc/passwd | awk '{print $5}' | numfmt --to=iec; true ; } > /tmp/bay/RMA-2024-55258
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'RMA-2024-55258'
+  alpha-4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/RMA-2024-55258 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  DD-EOJ-MAX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: aggregation TAKE TWO
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; ls -la ${HOME} | grep 'bash'; true ; } > /tmp/bay/fnv_0e7a35b5aea05
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'fnv_0e7a35b5aea05'
+  java17-lint:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/436b5adb-5d2e-eea1-dd9f 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  shouldHideCursor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Preflight vortex
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; mkdir -p "/tmp/handler_sugar_omega" && ls -ld "/tmp/handler_sugar_omega" && rmdir "/tmp/handler_sugar_omega"; true ; } > /tmp/bay/jbulj16x6bd
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'jbulj16x6bd'
+  ship-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/436b5adb-5d2e-eea1-dd9f 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  check_save_score:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Extract the inference server
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; if grep -q 'bash' /etc/passwd ; then echo 'true'; else echo false; fi; true ; } > /tmp/bay/SKU_089572
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'SKU_089572'
+  tweak-webhook-leak:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/SKU_089572 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  summer_074354:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Ship the artifact registry carefully
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; find /usr/lib -type f -iname '*.so*' -empty -exec md5sum {} + 2>/dev/null | sort | head -n 2; true ; } > /tmp/bay/grovepayloadvaultnickel
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'grovepayloadvaultnickel'
+  depoly:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/436b5adb-5d2e-eea1-dd9f 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  bugfix_close_lock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Ivy signs the init containers
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; TEXT=(duck seal swan); TEXT+=(split); echo "${TEXT[@]}"; true ; } > /tmp/bay/VID_61443
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'VID_61443'
+  smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/VID_61443 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  horseSys:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Wheels up staging
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; env -0|tr '\0' '\n'|head -n5; true ; } > /tmp/bay/Lpi
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'Lpi'
+  tb-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/41719359029bd4209f1abc4be045548f28 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+  relays_list:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: mix PAY22
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; compgen -b | cat -n | expand -t 5 | head -2; true ; } > /tmp/bay/m2KDgEQ
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'm2KDgEQ'
+  py310-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Grab prior
+          command: |
+            times > /dev/null && cat /tmp/bay/m2KDgEQ 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Clone project
+          command: git clone --depth 5 --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat reports-tmp.tgz | tar xzf -
+      - run:
+          name: Package artifacts
+          no_output_timeout: 15m
+          command: sleep 120
+      - run:
+          command: sh -c "./purge-process"
+
+  t_ga:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Only if the ground truth labels time out
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; cut -f1 -d: </etc/passwd|sort|uniq -c; true ; } > /tmp/bay/iter7_380a
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'iter7_380a'
+  inaeq15:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Tune The Spawn Points For Console
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; ls -S /|cat -n; true ; } > /tmp/bay/VID_61443
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'VID_61443'
+  Date-Span-Mesh:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: maintenance mode unlock routine
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; for u in $(cut -d: -f1 /etc/passwd | head -n 6); do printf "%-10s %s\n" "$u" "$(id -g $u)"; done; true ; } > /tmp/bay/quickBondGadget
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'quickBondGadget'
+  should_bind:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Fall back and truncate the home directories
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; mkdir -p /tmp/peach && cd /tmp/peach && touch test map frame && ls && cd - >/dev/null; true ; } > /tmp/bay/mapper-client
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'mapper-client'
+  Xiokyiack:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Ping Size Medium
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; cut -c1-8 /etc/nsswitch.conf | awk '{print NF}'; true ; } > /tmp/bay/engine_desert_neutron_layer
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'engine_desert_neutron_layer'
+  D60:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Imputing the currency fields almost done
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; getent passwd | tr ':' ' ' | fold -w 48 | expand -t 5; true ; } > /tmp/bay/m2KDgEQ
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'm2KDgEQ'
+  beta_hat:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Second attempt check the firewall rules
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; sed 's/$/;/' /etc/resolv.conf | head -n 1; true ; } > /tmp/bay/qsI
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'qsI'
+  MustWarning:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Elif does the signing
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; echo 'release notes ready' >${TMPDIR:-/tmp}/tmpro.tmp && du -h ${TMPDIR:-/tmp}/tmpro.tmp; true ; } > /tmp/bay/SKU_089572
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'SKU_089572'
+  exitHeightBlock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Dryrun
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; grep --ignore-case fi $HOME/.bashrc | nl; true ; } > /tmp/bay/RMA-2024-55258
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'RMA-2024-55258'
+  JoseBrush:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/bay
+      - run:
+          name: Draft depth 3
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; for n in juan sam liam otto; do echo "<$n>";done | sort -r; true ; } > /tmp/bay/FJoRDVecToR
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'FJoRDVecToR'
+  upload-corp-33:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Maintenance mode is healthy
+          command: |
+            mkdir -p /tmp/bay
+            { set +o pipefail 2>/dev/null; cat /proc/meminfo | grep -hi -m 2 MemFree | nl; true ; } > /tmp/bay/dd73e9642fbe
+            echo "final stage ok"
+      - persist_to_workspace:
+          root: /tmp/bay
+          paths:
+            - 'dd73e9642fbe'
+workflows:
+  build:
+    jobs:
+      - someSeed
+      - disable-if
+      - build:
+          requires:
+            - someSeed
+            - disable-if
+      - publish:
+          requires:
+            - someSeed
+            - disable-if
+      - q3-rev:
+          requires:
+            - someSeed
+            - disable-if
+      - py310-test:
+          requires:
+            - someSeed
+            - disable-if
+      - v9-edge:
+          requires:
+            - someSeed
+            - disable-if
+      - cerberus-final:
+          requires:
+            - someSeed
+            - disable-if
+      - tb-2:
+          requires:
+            - someSeed
+            - disable-if
+      - jul7-ship:
+          requires:
+            - someSeed
+            - disable-if
+      - ModelV11
+      - DD-EOJ-MAX
+      - v7-alpha:
+          requires:
+            - ModelV11
+            - DD-EOJ-MAX
+      - java17-lint:
+          requires:
+            - ModelV11
+            - DD-EOJ-MAX
+      - io-alpha:
+          requires:
+            - ModelV11
+            - DD-EOJ-MAX
+      - ship-it:
+          requires:
+            - ModelV11
+            - DD-EOJ-MAX
+      - deploy:
+          requires:
+            - ModelV11
+            - DD-EOJ-MAX
+      - release:
+          requires:
+            - ModelV11
+            - DD-EOJ-MAX
+      - depoly:
+          requires:
+            - ModelV11
+            - DD-EOJ-MAX
+      - callisto:
+          requires:
+            - ModelV11
+            - DD-EOJ-MAX
+      - fx-x:
+          requires:
+            - ModelV11
+            - DD-EOJ-MAX
+      - DeployPipeline:
+          requires:
+            - ModelV11
+            - DD-EOJ-MAX
+      - break-prod:
+          requires:
+            - ModelV11
+            - DD-EOJ-MAX
+      - no_idx
+      - t_ga:
+          requires:
+            - no_idx
+      - API-237:
+          requires:
+            - t_ga
+      - bugfix_close_lock:
+          requires:
+            - t_ga
+      - inaeq15:
+          requires:
+            - bugfix_close_lock
+      - smoke:
+          requires:
+            - inaeq15
+      - snow-dark:
+          requires:
+            - inaeq15
+      - Date-Span-Mesh:
+          requires:
+            - snow-dark
+      - nov8-cleanup:
+          requires:
+            - Date-Span-Mesh
+      - stiastklioxpy:
+          requires:
+            - Date-Span-Mesh
+      - should_bind:
+          requires:
+            - stiastklioxpy
+      - send-it:
+          requires:
+            - should_bind
+      - IDX-SECTION-2:
+          requires:
+            - should_bind
+      - Xiokyiack:
+          requires:
+            - IDX-SECTION-2
+      - py310-fmt:
+          requires:
+            - Xiokyiack
+      - relays_list:
+          requires:
+            - Xiokyiack
+      - D60:
+          requires:
+            - relays_list
+      - py310-ship:
+          requires:
+            - D60
+      - colMocha:
+          requires:
+            - D60
+      - beta_hat:
+          requires:
+            - colMocha
+      - update-parse:
+          requires:
+            - beta_hat
+      - check_save_score:
+          requires:
+            - beta_hat
+      - MustWarning:
+          requires:
+            - check_save_score
+      - tweak-webhook-leak:
+          requires:
+            - MustWarning
+      - sha-ddbd2926f78:
+          requires:
+            - MustWarning
+      - exitHeightBlock:
+          requires:
+            - sha-ddbd2926f78
+      - alpha-4:
+          requires:
+            - exitHeightBlock
+      - matchAccountShipment:
+          requires:
+            - exitHeightBlock
+      - JoseBrush:
+          requires:
+            - matchAccountShipment
+      - edge-v9:
+          requires:
+            - JoseBrush
+      - townAmt:
+          requires:
+            - JoseBrush
+      - upload-corp-33:
+          requires:
+            - townAmt
+      - Build_Tests8:
+          requires:
+            - upload-corp-33
