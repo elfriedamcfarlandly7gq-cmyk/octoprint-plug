@@ -1,0 +1,2 @@
+# octoprint-plug
+mostly ai
